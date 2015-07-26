@@ -1,0 +1,30 @@
+{
+  "name": "GMSandbox",
+  "description": "A tool library for easily adding customized markers on a Google map, simple API and no server side dependency",
+  "version": "0.0.1",
+  "homepage": "https://github.com/MarkoCen/GMSandbox",
+  "main": "src/GMSandbox.min.js",
+  "license": "MIT",
+  "private": false,
+  "ignore":[
+    ".gitignore",
+    "bower.json",
+    "gruntfile.js",
+    "package.json",
+    "README.md"
+  ],
+  "dependencies": {
+
+  },
+  "keywords":[
+    "Google",
+    "Google Map",
+    "Google Map API",
+    "Google Map Marker",
+    "Marker",
+    "Customized Marker"
+  ],
+  "authors":[
+    "Marko Cen"
+  ]
+}
