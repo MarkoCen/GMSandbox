@@ -4,54 +4,52 @@
     <style type="text/css">
         html, body{ height: 100%; margin: 0; padding: 0;}
     </style>
-    <script src="googleMap.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>-->
+    <script src="src/GMSandbox.min.js"></script>
 </head>
 <body>
     <div id="map-canvas" style="height:50%;"></div>
     <br>
+    <!--<div id="map-canvas-2" style="height:40%;"></div>-->
+    <button onclick="focusHome()">Remove</button>
     <input type="text" id="address" onkeypress="addMarker(event)">
     <script>
-        var mapOptions = {
-            zoom: 8,
-            center: {lng: 150.644, lat: -34.397},
-            panControl: false,
-            streetViewControl: false,
-            disableDoubleClickZoom: true,
-            mapTypeControl: false
-        };
-        gmSandbox.init('map-canvas', 'AIzaSyAfPPxAHZNlISGWzUxchIeWTCLEmwaYyKE', mapOptions);
+
+
+        var gmSandbox = new GMSandbox();
+
+
+
+        gmSandbox.init({ element: '#map-canvas', mapType: 'roadmap'});
+
 
         function addMarker(event){
             if(event.keyCode == 13){
-                gmSandbox.addCustomMarker({ template:'<img style="cursor:pointer;width:40px;height:40px;" onclick="clickImg()" src="img/marker.png">', location: event.target.value })
+
+                var option = {
+                    draggable: true,
+//                    anchor: "bottomLeft",
+                    name: 'myHome',
+                    template:'<div style="border:1px solid black"></div>',
+                    location: event.target.value
+                };
+
+                gmSandbox.addCustomMarker(option);
             }
         }
 
-        clickImg = function(){
-            console.log('click')
+        function showInfo(){
+            console.log("test")
+        }
+
+
+
+        focusHome = function(){
+            gmSandbox.removeMarker('myHome')
         }
 
 
     </script>
-    <!--<script type="text/javascript">-->
-        <!--function initialize() {-->
-            <!--var mapOptions = {-->
-                <!--zoom: 8,-->
-                <!--center: {lng: 150.644, lat: -34.397}-->
-            <!--};-->
-    <!-- -->
-            <!--var map = new google.maps.Map(document.getElementById('map-canvas'),-->
-                    <!--mapOptions);-->
-        <!--}-->
-    <!-- -->
-        <!--function loadScript() {-->
-            <!--var script = document.createElement('script');-->
-            <!--script.type = 'text/javascript';-->
-            <!--script.src = 'http://map.google.cn/maps/api/js?key=AIzaSyAfPPxAHZNlISGWzUxchIeWTCLEmwaYyKE&callback=initialize';-->
-            <!--document.body.appendChild(script);-->
-        <!--}-->
-    <!-- -->
-        <!--window.onload = loadScript;-->
-    <!--</script>-->
+
 </body>
 </html>
