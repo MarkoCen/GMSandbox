@@ -29,3 +29,5 @@ gmSandbox.init(mapOptions, function(map){
 })
 ```
 `init` method would lazy load Google Map API to your page, and create a Google map based on `mapOptions`
+
+###APIs
