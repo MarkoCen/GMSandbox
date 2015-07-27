@@ -1,7 +1,7 @@
 {
   "name": "GMSandbox",
   "version": "0.0.1",
-  "description": "A tool library for easily adding customized markers on a Google map, simple API and no server side dependency",
+  "description": "A light-weight tool library for easily adding customized markers on Google map. Simple APIs and no server side dependency",
   "main": "src/GMSandbox.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
