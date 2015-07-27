@@ -1,6 +1,6 @@
 {
   "name": "GMSandbox",
-  "description": "A tool library for easily adding customized markers on a Google map, simple API and no server side dependency",
+  "description": "A light-weight tool library for easily adding customized markers on Google map. Simple APIs and no server side dependency",
   "version": "0.0.1",
   "homepage": "https://github.com/MarkoCen/GMSandbox",
   "main": "src/GMSandbox.min.js",
