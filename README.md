@@ -2,7 +2,7 @@
 ----
 GMSandbox is a light-weight library for easily adding customized markers on Google map, it has no dependency and very simple APIs.
 
-[Demo]("http://markocen.github.io/GMSandbox/demo.html")
+[Demo](http://markocen.github.io/GMSandbox/demo.html)
 
 ###Setup in 30sec
 
