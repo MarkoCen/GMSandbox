@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css">
+    <style>
+        html, body{ height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="src/GMSandbox.min.js"></script>
+
+</head>
+<body>
+
+    <div class="init_mask">
+
+        <h3>Enter the first place that comes into your mind...</h3>
+        <input class="form-control first-place"><br>
+        <button class="btn btn-primary first-btn">Explore</button>
+    </div>
+
+    <!--<div id="map_canvas" style="width:100%;height:100%;"></div>-->
+
+    <script>
+        $(function(){
+
+            var gmSandbox = new GMSandbox();
+
+            window.getTemplate = function(title){
+
+                return  '<div class="marker btn btn-default" onclick="increaseLike(event)">' +
+                        '<h6 class="title">'+ title +'</h6>' +
+                        '<div class="content"><span class="glyphicon glyphicon-thumbs-up like"></span><span class="like_num" style="font-size: large;">0</span></div>' +
+                        '<div class="anchor"></div>' +
+                        '</div>';
+
+            };
+
+            var init = function(){
+
+                var searchPlace = $('.first-place').val();
+
+                $('.init_mask').animate({
+                    opacity: 0
+                }, {
+                    complete: function(){
+
+                        var html =  '<div style="width:100%;height:100%;">' +
+                                        '<div class="onmap-input-wrapper btn btn-default">' +
+                                            '<h6>Find Other Places:</h6>' +
+                                            '<input id="onmap-input" onkeypress="search(event)" class="form-control">' +
+                                        '</div>' +
+                                        '<div id="map_canvas" style="width:100%;height:100%;"></div>' +
+                                        '<div class="github_icon"><a href="https://github.com/MarkoCen/GMSandbox"><img src="http://www.alfredo.motta.name/wp-content/uploads/1415453602_GitHub-Mark.png"></a></div>'
+                                    '</div>';
+
+                        $('body').append(html);
+
+                        gmSandbox.init('#map_canvas', function(){
+
+                            gmSandbox.addCustomMarker({
+                                location: searchPlace,
+                                template: getTemplate(searchPlace),
+                                draggable: false
+                            })
+
+                        });
+
+                    }
+                })
+
+            };
+
+            $('.first-place').focus();
+
+            $('.first-place').on('keypress', function(event){
+
+                if(event.keyCode === 13){
+                    if(event.target.value != '' || event.target.value != undefined){
+                      init()
+                    }
+                }
+
+            });
+
+            $('.first-btn').on('click', function(event){
+
+                init();
+
+            });
+
+            window.search = function (event) {
+
+                if(event.keyCode === 13){
+                    if(event.target.value != '' || event.target.value != undefined){
+                        gmSandbox.addCustomMarker({
+                            location: event.target.value,
+                            template: getTemplate(event.target.value)
+                        })
+                    }
+                }
+            };
+
+            window.increaseLike = function(event){
+                var num = $(event.target).find('.like_num');
+                num.html(parseInt(num.html()) + 1)
+            }
+
+        });
+
+
+    </script>
+
+    <style>
+        .init_mask{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            padding: 15% 30% 0% 30%;
+            background-color: rgba(227,226,225, .5)
+        }
+
+        .marker{
+            /*width: 50px;*/
+            /*height:500px;*/
+            background-color: white;
+            -webkit-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.47);
+            -moz-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.47);
+            box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.47);
+            border-radius: 12px;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .anchor{
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: calc( 50% - 7px );
+            top: 99%;
+            border-style: solid;
+            border-width: 7px 7px 0 7px;
+            border-color: #ffffff transparent transparent transparent;
+        }
+
+        .onmap-input-wrapper{
+            position: absolute;
+            padding:1em;
+            top:3%;
+            left:1%;
+            width:20%;
+            background-color: white;
+            z-index: 9999;
+            -webkit-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.47);
+            -moz-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.47);
+            box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.47);
+            border-radius: 12px;
+            opacity: .8;
+        }
+
+        .onmap-input-wrapper:hover, .onmap-input-wrapper:active, .onmap-input-wrapper:focus{
+            opacity: 1;
+        }
+
+        .github_icon{
+            position: absolute;
+            left:22%;
+            top:3%;
+            border-radius: 35px;
+            -webkit-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.47);
+            -moz-box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.47);
+            box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.47);
+            opacity: .8;
+        }
+
+        .github_icon:hover{
+            opacity: 1;
+        }
+        .github_icon img{
+            cursor: pointer;
+            width:70px;
+            height:70px;
+            border-radius: 35px;
+        }
+
+        .marker .content{
+            height: 40px;
+            width: 50px;
+            background-color: transparent;
+            position:relative;
+            padding:.5em 0 .5em 0;
+        }
+
+        .marker .content .like {
+            font-size: large;
+            margin-right: 5px;
+            cursor: pointer;
+            color:deepskyblue;
+        }
+
+
+
+
+    </style>
+</body>
+</html>
