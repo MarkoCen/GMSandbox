@@ -13,6 +13,10 @@
     "package.json",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MarkoCen/GMSandbox.git"
+  },
   "dependencies": {
 
   },
