@@ -6,7 +6,7 @@ GMSandbox is a light-weight library for easily adding customized markers on Goog
 
 ###Setup in 30sec
 
-Download code from this repository or Bower, then include it on your web page:
+Download code from this repository or `bower install gm-sandbox`, then include it on your web page:
 ```html
 <script type='text/javascript' src='GMSandbox.js'></script>
 ```
