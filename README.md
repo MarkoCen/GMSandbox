@@ -63,6 +63,11 @@ arguments:
   `draggable` { Boolean }: Set if marker draggable on map    
   `name` { String }: Set the marker's name, you can use name to focus or retrieve related marker on map    
 
+#####GMSandbox.prototype.removeMarker(marker)
+remove a specific marker on map    
+arguments:    
+ - **`marker`** { String | Marker }: A marker name or a marker object return by `findMarker`
+
 #####GMSandbox.prototype.focusMarker(marker)
 set the center of map to a specific marker    
 
