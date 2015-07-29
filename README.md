@@ -100,3 +100,6 @@ arguments:
  - **`eventHandler`** { Function }: event handling function
    
 
+###License
+
+MIT
